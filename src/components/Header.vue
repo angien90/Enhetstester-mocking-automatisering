@@ -1,3 +1,20 @@
+<script>
+export default {
+  props: {
+    cart: {
+      type: Array,
+      default: () => []
+    }
+  },
+  computed: {
+    cartCount() {
+      // Räknar ihop alla quantity från produkterna
+      return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+  }
+}
+</script>
+
 <template>
   <header class="site-header">
     <div class="logo">
@@ -6,10 +23,13 @@
     <nav>
       <ul>
         <li><router-link to="/">Hem</router-link></li>
-        <li><router-link to="/cart">Varukorg</router-link></li>
+        <li>
+          <router-link to="/cart">
+            Varukorg <span v-if="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+          </router-link>
+        </li>
         <li><router-link to="/AboutUs">Om oss</router-link></li>
         <li><router-link to="/ContactUs">Kontaka oss</router-link></li>
-        <li><router-link to="/Admin">Admin</router-link></li>
       </ul>
     </nav>
   </header>
@@ -53,5 +73,13 @@ nav a:hover {
 
 nav a.router-link-exact-active {
   border-bottom-color: var(--color-primary-start);
+}
+
+.cart-badge {
+  background: var(--color-primary-start);
+  color: var(--color-text-dark);
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.8rem;
 }
 </style>

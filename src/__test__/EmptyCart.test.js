@@ -1,21 +1,19 @@
 // Verifiera att varukorgen är tom från början
 
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect } from "vitest";
+import { ShoppingCart } from "../utils/ShoppingCart.js";
 
-// En enkel funktion för att skapa en lokal kopia av cart
-function createLocalCart(cart) {
-  return [...(cart || [])]
-}
+describe("ShoppingCart - initialt tillstånd", () => {
+  test("varukorgen är tom från början", () => {
+    // --- Arrange ---
+    const cart = new ShoppingCart();
 
-describe('Empty cart at beginning', () => {
-  test('Cart är tom från början', () => {
-    // Assign
-    const localCart = createLocalCart([]) // Hämtar vår funktion
+    // --- Act ---
+    // (ingen handling behövs – vi kollar bara initial state)
 
-    // Act
-    // (ingen handling behövs eftersom vi bara testar att cart startar tom)
-
-    // Assert
-    expect(localCart).toEqual([]) // Kollar att cart är tom
-  })
-})
+    // --- Assert ---
+    expect(cart.cart).toHaveLength(0);
+    expect(cart.subtotal).toBe(0);
+    expect(cart.totalVAT).toBe(0);
+  });
+});

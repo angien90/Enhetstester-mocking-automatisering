@@ -20,10 +20,8 @@ export default {
   },
   methods: {
     addToCart(event) {
-      // Skickar hela event-objektet inklusive quantity
-      this.$emit('add-to-cart', { ...event });
-      // Återställ antal till 1 efter bokning
-      event.quantity = 1;
+      this.$emit('add-to-cart', { ...event }); // skicka objektet inklusive quantity
+      event.quantity = 1; // återställ antal i Event.vue
     },
     increase(event) {
       event.quantity++;

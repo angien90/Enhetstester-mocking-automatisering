@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     submitForm() {
-      // Här kan du senare koppla på API eller e-posttjänst
+      // Här kan man senare koppla på API eller e-posttjänst
       this.successMessage = `Tack, ${this.name}! Vi har mottagit ditt meddelande.`;
       this.name = "";
       this.email = "";

@@ -14,6 +14,22 @@ export default {
       appliedDiscount: false
     }
   },
+  mounted() {
+    // Hämta sparad varukorg när sidan laddas
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      this.cart = JSON.parse(savedCart);
+    }
+  },
+  watch: {
+    // Spara automatiskt när varukorgen ändras
+    cart: {
+      handler(newCart) {
+        localStorage.setItem("cart", JSON.stringify(newCart));
+      },
+      deep: true
+    }
+  },
   methods: {
     addToCart(event) {
       const existing = this.cart.find(item => item.id === event.id);
@@ -36,6 +52,7 @@ export default {
     },
     clearCart() {
       this.cart = [];
+      localStorage.removeItem("cart"); 
     }
   }
 }
@@ -43,7 +60,7 @@ export default {
 
 <template>
   <div id="app">
-    <Header />
+    <Header :cart="cart" />
 
     <main class="main-content"
       :style="{ backgroundImage: `url(${festivalImage})` }">
@@ -55,6 +72,8 @@ export default {
           :remove-from-cart="removeFromCart"
           :clear-cart="clearCart"
           :shipping-cost="shippingCost"
+          @increase-quantity="increaseQuantity"
+          @decrease-quantity="decreaseQuantity"
         />
       </div>
     </main>

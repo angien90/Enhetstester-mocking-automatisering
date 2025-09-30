@@ -10,9 +10,9 @@ export default {
 <template>
   <div class="home-page">
     <h1>Välkommen till Festivo</h1>
-    <h2>- Live - Laugh - Upplevelser -</h2>
+    <h2>- Live - Laugh - Live -</h2>
 
-    <Events @add-to-cart="addToCart" />
+    <Events @add-to-cart="event => addToCart(event)" />
   </div>
 </template>
 

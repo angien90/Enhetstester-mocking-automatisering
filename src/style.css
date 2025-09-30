@@ -55,24 +55,25 @@ body {
 }
 
 .section {
-  background-color: rgba(255, 255, 255, 0.15); /* transparent vit */
+  background-color: rgba(250, 238, 253, 0.123);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* safari */
+  -webkit-backdrop-filter: blur(10px); 
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid rgba(5, 5, 5, 0.377);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
   padding: 16px;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
-  max-height: 77vh;  
   overflow-y: auto;
+  min-width: 600px;
+  min-height: 450px;
 }
 
 .main-content {
   flex: 1 1 0%;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: start; 
   align-items: center;
   box-sizing: border-box;
   overflow: auto;
@@ -110,6 +111,9 @@ h1 {
 h2 {
   font-size: 2em;
   margin-bottom: 1rem;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.6), 
+    0 0 6px rgba(255, 255, 255, 0.2);
 }
 
 h3 {
