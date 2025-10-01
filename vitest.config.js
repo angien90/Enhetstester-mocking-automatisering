@@ -5,7 +5,10 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             reporter: ['text', 'html'],
-            include: ['src/**/*.js', 'src/**/*.ts', 'src/**/*.vue'],
+            // Inkluderar enbart ShoppingCart.js
+            include: ["src/utils/ShoppingCart.js"],
+            // Exkludera allt annat
+            exclude: ["**/*.vue", "src/views/**", "src/components/**"],
         },
     },
 });

@@ -46,6 +46,8 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 
 ## Lista över tester i applikationen 
 
+![Enhetstester](public/Enhetstester.png)
+
 * Verifiera att varukorgen är tom från början
 * Testa att om det läggs till en produkt, så ökar length på cart-variabeln.
 * Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
@@ -62,11 +64,15 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 * Verifiera att det inte går att beställa en tom varukorg.
 * Bonus: Verifiera att när sidan laddas om så behålls föregående beställning i varukorgen om den inte är "betald". T.ex. via localStorage.
 
+
+### Code coverage
+![Code Coverage](public/code_coverage.png)
+
 ### Shields.io
 
 Badge som visar om tester passerar
 
-![Vitest](https://img.shields.io/github/workflow/status/angien90/fed24d-testning-inl1-angien90/Vitest%20Tests?label=Vitest)
+![Vitest](https://github.com/angien90/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg?label=Vitest)
 
 ## Automatisering
 
