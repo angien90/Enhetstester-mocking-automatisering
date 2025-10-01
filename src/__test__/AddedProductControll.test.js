@@ -1,27 +1,26 @@
 // Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
 
 import { describe, test, expect } from "vitest";
-import Event from "../components/Event.vue"; 
+import { ShoppingCart } from "../utils/ShoppingCart.js";
 
-describe("Event.vue - lägg till produkt via komponent", () => {
-  test("addToCart-emission skickar korrekt produkt", async () => {
+describe("ShoppingCart - lägg till produkt", () => {
+  test("lägger till produkt med korrekt data", () => {
     // --- Arrange ---
-    const wrapper = mount(Event);
-    const firstEvent = wrapper.vm.events[0];
+    const cart = new ShoppingCart();
+    const product = {
+      id: 1,
+      name: "Biljett",
+      price: 100,
+      description: "Konsertbiljett",
+      quantity: 1,
+      vat: 0.25
+    };
 
     // --- Act ---
-    await wrapper.find("button").trigger("click"); // klicka på första "Boka biljett"
+    cart.addProduct(product);
 
     // --- Assert ---
-    // Kolla att event emitterade 'add-to-cart' med rätt produktdata
-    const emitted = wrapper.emitted("add-to-cart");
-    expect(emitted).toHaveLength(1);
-    expect(emitted[0][0]).toMatchObject({
-      id: firstEvent.id,
-      name: firstEvent.name,
-      price: firstEvent.price,
-      description: firstEvent.description,
-      quantity: firstEvent.quantity,
-    });
+    expect(cart.cart).toHaveLength(1);
+    expect(cart.cart[0]).toMatchObject({ product, quantity: 1 });
   });
 });
