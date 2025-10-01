@@ -48,6 +48,10 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 
 ![Enhetstester](public/Enhetstester.png)
 
+Workflow och badge som visar om tester passerat
+
+[![Vitest Tests](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg)](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml)
+
 * Verifiera att varukorgen är tom från början
 * Testa att om det läggs till en produkt, så ökar length på cart-variabeln.
 * Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
@@ -68,11 +72,6 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 ### Code coverage
 ![Code Coverage](public/code_coverage.png)
 
-### Vitest
-
-Badge som visar om tester passerar
-
-![Vitest workflow](https://github.com/angien90/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg?branch=main)
 
 ## Automatisering
 
