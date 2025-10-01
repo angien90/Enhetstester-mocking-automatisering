@@ -38,7 +38,7 @@ Utöver kraven för G:
 * Du ska ha skrivit en README som beskriver vilka tester som har implementerats samt skärmdumpa resultaten.
 
 #### Bonus, för din egen skull
-I din README kan du inkludera en badge för om testerna har gått igenom. 
+I din README kan du inkludera en badge för om testerna har gått igenom. Läs mer här https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge.
 
 
 
@@ -46,11 +46,11 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 
 ## Lista över tester i applikationen 
 
-![Enhetstester](public/Enhetstester.png)
-
 Workflow och badge som visar om tester passerat
 
 [![Vitest Tests](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg)](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml)
+
+![Enhetstester](public/Enhetstester.png)
 
 * Verifiera att varukorgen är tom från början
 * Testa att om det läggs till en produkt, så ökar length på cart-variabeln.

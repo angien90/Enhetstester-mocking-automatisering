@@ -18,18 +18,27 @@ export default {
         email: '',
         address: '',
         zipcode: ''
-      }
+      },
+      successMessage: ''
     }
   },
   computed: {
     subtotal() {
-      return this.cartInstance.subtotal;
+      return this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     },
     discountedTotal() {
-      return this.cartInstance.discountedTotal;
+      return this.discountCode === "418_I'm_A_Teapot"
+        ? this.subtotal * 0.75
+        : this.subtotal;
+    },
+    totalExclVAT() {
+      return this.discountedTotal + (this.shippingCost || 0);
+    },
+    vat() {
+      return Math.round(this.totalExclVAT * 0.25);
     },
     totalPrice() {
-      return this.cartInstance.totalInclVAT + this.shippingCost;
+      return this.totalExclVAT + this.vat;
     }
   },
   methods: {
@@ -50,16 +59,17 @@ export default {
         alert("Fyll i alla fält innan du skickar beställningen!");
         return;
       }
-      // här skulle du skicka ordern till backend
+      // Här kan man skicka ordern till backend
       console.log("Order skickad:", {
         cart: this.cart,
         customer: this.customer,
         total: this.totalPrice
       });
-      alert("Tack för din beställning, " + this.customer.name + "!");
-      this.$emit('submit-order', { cart: this.cart, customer: this.customer });
 
-      // valfritt: töm varukorgen och formuläret
+      // Visa success message
+      this.successMessage = `Tack för din beställning, ${this.customer.name}! Vi har mottagit din order.`;
+
+      // Töm varukorgen och formuläret
       this.clearCart();
       this.customer = { name: '', email: '', address: '' };
     }
@@ -68,11 +78,14 @@ export default {
 </script>
 
 <template>
-   <div class="section">
+  <div class="section">
     <h2>Din varukorg</h2>
-    <div v-if="cart.length === 0">Varukorgen är tom.</div>
-    
-    <ul v-else>
+
+    <!-- Varukorg är tom -->
+    <div v-if="cart.length === 0 && !successMessage">Varukorgen är tom.</div>
+
+    <!-- Varukorgslista -->
+    <ul v-if="cart.length > 0">
       <li v-for="item in cart" :key="item.id" class="cart-item">
         <span>{{ item.name }}</span>
         <span>Datum: {{ item.date }}</span>
@@ -86,42 +99,43 @@ export default {
       </li>
     </ul>
 
-    <div v-if="cart.length > 0" class="cart-footer">
-      <div class="cart-calculate">
+    <!-- Footer & Formulär -->
+    <div v-if="cart.length > 0 || successMessage" class="cart-footer">
+
+      <!-- Beräkning -->
+      <div v-if="cart.length > 0" class="cart-calculate">
         <p>Delsumma: {{ subtotal }} SEK</p>
         <p>Frakt: {{ shippingCost }} SEK</p>
         <p v-if="discountCode === &quot;418_I'm_A_Teapot&quot;">Rabatt: -25%</p>
-        <p>Moms (25%): {{ Math.round((discountedTotal + shippingCost) * 0.25) }} SEK</p>
+        <p>Moms (25%): {{ vat }} SEK</p>
+        <hr>
+        <p class="cart-total">Totalt inkl. moms: {{ totalPrice }} SEK</p>
       </div>
-      <hr>
-      <p class="cart-total">Totalt inkl. moms: {{ totalPrice }} SEK</p>
-      
-      <form class="checkout-form" @submit.prevent="submitOrder">
-        <div class="form-group">
-          <label for="name">Namn</label>
-          <input type="text" id="name" v-model="customer.name" required />
-        </div>
 
-        <div class="form-group">
-          <label for="email">E-post</label>
-          <input type="email" id="email" v-model="customer.email" required />
-        </div>
+      <!-- Formulär -->
+      <form v-if="cart.length > 0" class="checkout-form" @submit.prevent="submitOrder">
+        <label for="name">Namn</label>
+        <input type="text" id="name" v-model="customer.name" required />
 
-        <div class="form-group">
-          <label for="address">Leveransadress</label>
-          <input type="text" id="address" v-model="customer.address" required />
-        </div>
+        <label for="email">E-post</label>
+        <input type="email" id="email" v-model="customer.email" required />
 
-        <div class="form-group">
-          <label for="zip-code">Postnummer</label>
-          <input type="number" id="zip-code" v-model="customer.zipcode" required />
-        </div>
+        <label for="address">Leveransadress</label>
+        <input type="text" id="address" v-model="customer.address" required />
+
+        <label for="zipcode">Postnummer</label>
+        <input type="number" id="zipcode" v-model="customer.zipcode" required />
 
         <div class="cart-buttons">
-          <button type="button" @click="clearCart">Töm varukorg</button>
+          <button type="button" @click="clearCartHandler">Töm varukorg</button>
           <button type="submit">Skicka beställning</button>
         </div>
       </form>
+
+      <!-- Success-message -->
+      <div v-if="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
     </div>
   </div>
 </template>
@@ -198,40 +212,35 @@ ul {
 }
 
 .checkout-form {
-  margin: 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+.checkout-form label {
+  color: var(--color-primary-start);
+  font-weight: bold;
+  margin-top: 10px;
   text-align: left;
+  padding-left: 20px;
 }
 
-.form-group label {
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
-
-.form-group input {
-  padding: 6px 10px;
-  border-radius: 6px;
+.checkout-form input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  font-family: inherit;
 }
 
-.cart-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.success-message {
+  color: var(--color-primary-start);
+  font-weight: 600;
   margin-top: 1rem;
 }
 
 .cart-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-top: 1rem;
 }
 </style>
