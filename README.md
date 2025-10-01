@@ -68,11 +68,11 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 ### Code coverage
 ![Code Coverage](public/code_coverage.png)
 
-### Shields.io
+### Vitest
 
 Badge som visar om tester passerar
 
-![Vitest](https://github.com/angien90/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg?label=Vitest)
+![Vitest workflow](https://github.com/angien90/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg?branch=main)
 
 ## Automatisering
 
