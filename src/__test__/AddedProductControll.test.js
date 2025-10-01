@@ -1,7 +1,6 @@
 // Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
 
 import { describe, test, expect } from "vitest";
-import { mount } from "@vue/test-utils";
 import Event from "../components/Event.vue"; 
 
 describe("Event.vue - lägg till produkt via komponent", () => {

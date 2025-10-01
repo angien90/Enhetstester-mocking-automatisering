@@ -66,7 +66,7 @@ I din README kan du inkludera en badge för om testerna har gått igenom.
 
 Badge som visar om tester passerar
 
-![Vitest](https://img.shields.io/github/workflow/status/<user>/<repo>/Run%20Vitest?label=Vitest)
+![Vitest](https://img.shields.io/github/workflow/status/angien90/fed24d-testning-inl1-angien90/Vitest%20Tests?label=Vitest)
 
 ## Automatisering
 
