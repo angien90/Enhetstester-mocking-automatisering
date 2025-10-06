@@ -25,4 +25,8 @@ export default {
   max-width: 800px;
   margin: 0 auto;
 }
+
+p {
+  color: var(--color-text-light);
+}
 </style>

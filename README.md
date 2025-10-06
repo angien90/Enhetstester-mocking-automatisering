@@ -44,6 +44,13 @@ I din README kan du inkludera en badge för om testerna har gått igenom. Läs m
 <br>
 <br>
 
+# Applikationen
+Eftersom uppgiften inte uttryckligen krävde en komplett och fullt fungerande applikation, har jag valt att fokusera enbart på desktopversionen i min implementation.
+![Startsidan](public/application_desktop_tablet.png)
+![Varukorgen](public/varukorg.png)
+![Om oss](public/about_us.png)
+![Kontakta oss](public/contact_us.png)
+
 # Dokumentation av tester
 Projektet använder Vitest för att testa och verifiera funktionaliteten i ShoppingCart-klassen (utils/ShoppingCart.js).
 

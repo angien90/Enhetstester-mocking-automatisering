@@ -46,10 +46,14 @@ export default {
       this.cartInstance.applyVoucher(this.discountCode);
     },
     increase(item) {
-      this.cartInstance.addProduct(item.product, 1);
+      item.quantity++;
     },
     decrease(item) {
-      this.cartInstance.removeProduct(item.product.id, 1);
+      if (item.quantity > 1) {
+        item.quantity--;
+      } else {
+        this.removeFromCart(item);
+      }
     },
     clearCartHandler() {
       this.cartInstance.clearCart();
@@ -151,6 +155,7 @@ export default {
 
 ul {
   padding: 0;
+  color: var(--color-text-light);
 }
 
 .quantity-controls {
@@ -186,8 +191,7 @@ ul {
   min-width: 20px;
   text-align: center;
   font-weight: bold;
-  color: var(--color-text-dark);
-    color: black;
+  color: var(--color-text-light);
 }
 
 .discount {
@@ -201,10 +205,12 @@ ul {
   font-size: 1.2rem;
   margin-top: 0;
   text-align: right;
+  color: var(--color-text-light);
 }
 
 .cart-calculate {
   text-align: right;
+  color: var(--color-text-light);
 }
 
 .cart-calculate p {
