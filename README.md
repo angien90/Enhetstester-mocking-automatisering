@@ -40,6 +40,9 @@ Utöver kraven för G:
 #### Bonus, för din egen skull
 I din README kan du inkludera en badge för om testerna har gått igenom. Läs mer här https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge.
 
+<br>
+<br>
+<br>
 
 # Dokumentation av tester
 Projektet använder Vitest för att testa och verifiera funktionaliteten i ShoppingCart-klassen (utils/ShoppingCart.js).
