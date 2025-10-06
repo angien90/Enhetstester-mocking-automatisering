@@ -87,7 +87,7 @@ Code coverage mäts med hjälp av `@vitest/coverage-v8` och visar hur stor andel
 
 ![Code Coverage](public/code_coverage.png)
 
-Projektets code coverage ligger på **85 % av applikationskoden**.
+Projektets code coverage ligger på **99% av applikationskoden**.
 Mappen `coverage` har lagts till i `.gitignore` för att inte pusha rapportfilerna till GitHub.
 
 ## Automatisering
