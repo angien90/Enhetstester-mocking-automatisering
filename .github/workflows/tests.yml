@@ -1,0 +1,30 @@
+name: Vitest Tests
+
+# Kör workflow på push till main eller dev, samt vid pull request mot main
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  vitest:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Hämta repo
+      - uses: actions/checkout@v3
+
+      # 2. Installera Node.js (senaste LTS)
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3. Installera beroenden
+      - run: npm ci
+
+      # 4. Kör Vitest med coverage
+      - run: npx vitest run --coverage
