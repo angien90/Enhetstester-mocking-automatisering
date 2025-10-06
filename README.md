@@ -41,17 +41,10 @@ Utöver kraven för G:
 I din README kan du inkludera en badge för om testerna har gått igenom. Läs mer här https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge.
 
 
-
-# Uppgiftsanteckningar
+# Dokumentation av tester
+Projektet använder Vitest för att testa och verifiera funktionaliteten i ShoppingCart-klassen (utils/ShoppingCart.js).
 
 ## Lista över tester i applikationen 
-
-Workflow och badge som visar om tester passerat
-
-[![Vitest Tests](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg)](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml)
-
-![Enhetstester](public/Enhetstester.png)
-
 * Verifiera att varukorgen är tom från början
 * Testa att om det läggs till en produkt, så ökar length på cart-variabeln.
 * Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
@@ -68,16 +61,30 @@ Workflow och badge som visar om tester passerat
 * Verifiera att det inte går att beställa en tom varukorg.
 * Bonus: Verifiera att när sidan laddas om så behålls föregående beställning i varukorgen om den inte är "betald". T.ex. via localStorage.
 
+### Testresultat
+Alla tester körs med `npm run test` och passerar utan fel.  
+Se nedan skärmdump från terminalen:
 
-### Code coverage
+![Enhetstester](public/Enhetstester.png)
+
+## GitHub Actions – Teststatus
+Badge som visar om tester passerat
+
+[![Vitest Tests](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml/badge.svg)](https://github.com/Medieinstitutet/fed24d-testning-inl1-angien90/actions/workflows/tests.yml)
+
+## Code coverage
+Code coverage mäts med hjälp av `@vitest/coverage-v8` och visar hur stor andel av applikationskoden som testas av Vitest.
+
 ![Code Coverage](public/code_coverage.png)
 
+Projektets code coverage ligger på **85 % av applikationskoden**.
+Mappen `coverage` har lagts till i `.gitignore` för att inte pusha rapportfilerna till GitHub.
 
 ## Automatisering
+I projektet körs testautomatisering via npm paketet Husky. Den kör igenom alla tester vid en commit och skulle något test inte gå igenom kan man inte pusha sin kod. 
 
-
-## Installation av projektet  
-#### Initierar projektet och vitest
+## Installation och körning 
+#### Initiering och installation av Vitest
 1. npm init
 2. npm install -D vitest
 3. npm create vitest@latest . 
@@ -87,15 +94,19 @@ Workflow och badge som visar om tester passerat
 
 Testfiler ligger i mappen __test__ och för att köra testet kör man npm run test.
 
-#### Initierar routing på sidan
+#### Routing
 npm install vue-router
 
-#### Initierar Code coverage
+#### Code coverage
 1. Skapade filen vitest.config.js
 2. Lade till coverage: vitest --coverage i package.json
 3. npm install --save-dev @vitest/coverage-v8
 4. npm run coverage
 
-#### Kör projektet
+#### Testautomatisering (Husky)
+1. npm install --save-dev husky
+2. npm exec husky init
+
+#### Starta projektet
 1. npm install
 2. npm run dev
