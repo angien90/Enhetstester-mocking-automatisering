@@ -120,3 +120,4 @@ npm install vue-router
 #### Starta projektet
 1. npm install
 2. npm run dev
+
